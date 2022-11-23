@@ -1,0 +1,7 @@
+pyvenv.cfg
+TestProject/
+Scripts/
+Lib/
+include/
+__pycache__/
+.idea/
