@@ -65,14 +65,33 @@ class GroupBox(QGroupBox):
         def __init__(self,parent):
             super().__init__(parent)
             self.hot_key_list = []
-        def enterEvent(self, event):
+            self.input_thread = None
+        # def enterEvent(self, event):
+        #     from ___Threads___ import HotKeyInputThread
+        #     from ___Menu___ import file_menubar
+        #     file_menubar.setEnabled(False)
+        #     self.setReadOnly(False)
+        #     self.input_thread = HotKeyInputThread()
+        #     self.input_thread.start()
+        #     print(self.input_thread)
+        # def leaveEvent(self,event):
+        #     keyboard.unhook(self.input_thread.key_hook)
+        #     from ___Menu___ import file_menubar
+        #     file_menubar.setEnabled(True)
+        #     self.setReadOnly(True)
+        #     self.deselect()
+        #     self.input_thread.stop()
+        #     self.input_thread.join()
+        #     self.input_thread = None
+        def focusInEvent(self, event):
             from ___Threads___ import HotKeyInputThread
             from ___Menu___ import file_menubar
             file_menubar.setEnabled(False)
             self.setReadOnly(False)
             self.input_thread = HotKeyInputThread()
             self.input_thread.start()
-        def leaveEvent(self,event):
+            print(self.input_thread)
+        def focusOutEvent(self, event):
             keyboard.unhook(self.input_thread.key_hook)
             from ___Menu___ import file_menubar
             file_menubar.setEnabled(True)
@@ -80,19 +99,36 @@ class GroupBox(QGroupBox):
             self.deselect()
             self.input_thread.stop()
             self.input_thread.join()
+            self.input_thread = None
     class RepeatCountLine(QLineEdit):
         max_repeat_count = 10
         def __init__(self,parent):
             super().__init__(parent)
             self.repeat_count = ""
-        def enterEvent(self,event):
+            self.input_thread = None
+        # def enterEvent(self,event):
+        #     from ___Threads___ import RepeatCountInputThread
+        #     from ___Menu___ import file_menubar
+        #     file_menubar.setEnabled(False)
+        #     self.setReadOnly(False)
+        #     self.input_thread = RepeatCountInputThread()
+        #     self.input_thread.start()
+        # def leaveEvent(self,event):
+        #     keyboard.unhook(self.input_thread.key_hook)
+        #     from ___Menu___ import file_menubar
+        #     file_menubar.setEnabled(True)
+        #     self.setReadOnly(True)
+        #     self.deselect()
+        #     self.input_thread.stop()
+        #     self.input_thread.join()
+        def focusInEvent(self, event):
             from ___Threads___ import RepeatCountInputThread
             from ___Menu___ import file_menubar
             file_menubar.setEnabled(False)
             self.setReadOnly(False)
             self.input_thread = RepeatCountInputThread()
             self.input_thread.start()
-        def leaveEvent(self,event):
+        def focusOutEvent(self, event):
             keyboard.unhook(self.input_thread.key_hook)
             from ___Menu___ import file_menubar
             file_menubar.setEnabled(True)
@@ -100,12 +136,30 @@ class GroupBox(QGroupBox):
             self.deselect()
             self.input_thread.stop()
             self.input_thread.join()
+            self.input_thread = None
     class IntervalDelayLine(QLineEdit):
         def __init__(self,parent):
             super().__init__(parent)
             self.interval_delay = ""
             self.setMaxLength(20)
-        def enterEvent(self, event):
+            self.input_thread = None
+        # def enterEvent(self, event):
+        #     self.setReadOnly(False)
+        #     from ___Threads___ import IntervalDelayInputThread
+        #     from ___Menu___ import file_menubar
+        #     file_menubar.setEnabled(False)
+        #     self.setReadOnly(False)
+        #     self.input_thread = IntervalDelayInputThread()
+        #     self.input_thread.start()
+        # def leaveEvent(self, event):
+        #     keyboard.unhook(self.input_thread.key_hook)
+        #     from ___Menu___ import file_menubar
+        #     file_menubar.setEnabled(True)
+        #     self.setReadOnly(True)
+        #     self.deselect()
+        #     self.input_thread.stop()
+        #     self.input_thread.join()
+        def focusInEvent(self, event):
             self.setReadOnly(False)
             from ___Threads___ import IntervalDelayInputThread
             from ___Menu___ import file_menubar
@@ -113,7 +167,7 @@ class GroupBox(QGroupBox):
             self.setReadOnly(False)
             self.input_thread = IntervalDelayInputThread()
             self.input_thread.start()
-        def leaveEvent(self, event):
+        def focusOutEvent(self, event):
             keyboard.unhook(self.input_thread.key_hook)
             from ___Menu___ import file_menubar
             file_menubar.setEnabled(True)
@@ -121,19 +175,36 @@ class GroupBox(QGroupBox):
             self.deselect()
             self.input_thread.stop()
             self.input_thread.join()
+            self.input_thread = None
     class KeyListLine(QLineEdit):
         key_list_max_count = 10
         def __init__(self,parent):
             super().__init__(parent)
             self.key_list = []
-        def enterEvent(self,event):
+            self.input_thread = None
+        # def enterEvent(self,event):
+        #     from ___Threads___ import KeyListInputThread
+        #     from ___Menu___ import file_menubar
+        #     file_menubar.setEnabled(False)
+        #     self.setReadOnly(False)
+        #     self.input_thread = KeyListInputThread()
+        #     self.input_thread.start()
+        # def leaveEvent(self,event):
+        #     keyboard.unhook(self.input_thread.key_hook)
+        #     from ___Menu___ import file_menubar
+        #     file_menubar.setEnabled(True)
+        #     self.setReadOnly(True)
+        #     self.deselect()
+        #     self.input_thread.stop()
+        #     self.input_thread.join()
+        def focusInEvent(self, event):
             from ___Threads___ import KeyListInputThread
             from ___Menu___ import file_menubar
             file_menubar.setEnabled(False)
             self.setReadOnly(False)
             self.input_thread = KeyListInputThread()
             self.input_thread.start()
-        def leaveEvent(self,event):
+        def focusOutEvent(self, event):
             keyboard.unhook(self.input_thread.key_hook)
             from ___Menu___ import file_menubar
             file_menubar.setEnabled(True)
@@ -141,6 +212,7 @@ class GroupBox(QGroupBox):
             self.deselect()
             self.input_thread.stop()
             self.input_thread.join()
+            self.input_thread = None
     class Label(QLabel):
         def __init__(self,parent):
             super().__init__(parent)
