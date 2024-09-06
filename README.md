@@ -32,4 +32,4 @@ To make look good, the two keywords are replaced to easy keywords. `,` is replac
 You should know the two keywords to handle saved file.
 
 # Main
-`___init___.py` is the starting point of this macro. To start, run `___init___.py`
+`___init___.py` is the starting point of this macro. To start, run `___init___.py` as an administrator.
