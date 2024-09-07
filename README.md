@@ -18,7 +18,7 @@ as you want.
 6. Write to each input box, and you should make sure each input box. If you
 don`t write properly, the macro will not execute your Key Group.
 7. Also, you must Uncheck all Key Groups to run. If you don`t,
-like said before, It will be not executed. (I inserted this funtion to prevent access to Key Group)
+like said before, It will be not executed. (I inserted this function to prevent access to Key Group)
 
 # Save and Load
 This macro support save and load options, and the file extension is `.mco`.

@@ -41,7 +41,6 @@ class HotKeyInputThread(threading.Thread):
             if len(key_list) >= 1:
                 del key_list[-1]
 
-        print(key_list)
         self.DisplayKeyList(key_list, line)
     def GroupFocused(self):
         for group in GroupBox.group_list:
@@ -113,7 +112,6 @@ class RepeatCountInputThread(threading.Thread):
                 cur_count = "".join(str(item) for item in temp_list)
 
         group.repeat_count_line.repeat_count = cur_count
-        print(cur_count)
         line.setText(cur_count)
     def GroupFocused(self):
         for group in GroupBox.group_list:
@@ -154,7 +152,6 @@ class IntervalDelayInputThread(threading.Thread):
                 interval_delay = "".join(str(item) for item in temp_list)
 
         line.interval_delay = interval_delay
-        print(interval_delay)
         line.setText(interval_delay)
     def GroupFocused(self):
         for group in GroupBox.group_list:
@@ -188,7 +185,6 @@ class KeyListInputThread(threading.Thread):
             if len(key_list) >= 1:
                 del key_list[-1]
 
-        print(key_list)
         self.DisplayKeyList(key_list, line)
     def stop(self):
         self.state = False
