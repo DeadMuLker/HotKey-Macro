@@ -11,7 +11,8 @@ KEY = pynput.keyboard.Key
 
 def Func1(key):
     try:
-        print(f"{key.vk} is pressed")
+        if key.vk in key_list_for_pynput:
+            pass
     except:
         try:
             print(f"{key}")
@@ -32,7 +33,7 @@ keyListener = pynput.keyboard.Listener(
 keyListener.start()
 
 while True:
-    # print(keyList)
+    print(keyList)
     time.sleep(0.01)
 
 

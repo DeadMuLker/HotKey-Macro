@@ -10,6 +10,7 @@ import keyboard
 import threading
 import time
 import ___Keys___
+import pynput
 
 class HotKeyInputThread(threading.Thread):
     def __init__(self):
@@ -255,6 +256,7 @@ class ReadGroupThread(threading.Thread):
         super().__init__(daemon=True)
         self.state = True
         self.delay = 0.01
+        self.keyBoard = pynput.keyboard.Controller()
     def run(self):
         while self.state:
             groups = GroupBox.group_list
@@ -299,11 +301,11 @@ class ReadGroupThread(threading.Thread):
 
                     for key in key_list:
                         if self.state == False: return
-                        keyboard.press(key)
+                        self.keyBoard.press(key)
                         if self.state == False: return
                         time.sleep(key_delay)
                         if self.state == False: return
-                        keyboard.release(key)
+                        self.keyBoard.release(key)
                         if self.state == False: return
                         time.sleep(key_delay)
                         if self.state == False: return
