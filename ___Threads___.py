@@ -301,11 +301,11 @@ class ReadGroupThread(threading.Thread):
 
                     for key in key_list:
                         if self.state == False: return
-                        self.keyBoard.press(key)
+                        keyboard.press(key)
                         if self.state == False: return
                         time.sleep(key_delay)
                         if self.state == False: return
-                        self.keyBoard.release(key)
+                        keyboard.release(key)
                         if self.state == False: return
                         time.sleep(key_delay)
                         if self.state == False: return
