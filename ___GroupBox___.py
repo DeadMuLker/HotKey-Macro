@@ -90,7 +90,6 @@ class GroupBox(QGroupBox):
             self.setReadOnly(False)
             self.input_thread = HotKeyInputThread()
             self.input_thread.start()
-            print(self.input_thread)
         def focusOutEvent(self, event):
             keyboard.unhook(self.input_thread.key_hook)
             from ___Menu___ import file_menubar

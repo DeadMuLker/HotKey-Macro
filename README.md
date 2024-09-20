@@ -1,7 +1,7 @@
 # HotKey Macro
 This is a keyboard macro.
 # Support OS
-`Windows`(I have not tested other os).
+`Windows`(I did not test other os).
 # Requirements
 `pip install pyside6`
 
