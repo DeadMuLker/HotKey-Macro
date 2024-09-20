@@ -1,16 +1,16 @@
-import sys
-
 from ___Keys___ import *
 from PySide6.QtWidgets import QLineEdit,QGroupBox
 from PySide6.QtCore import Qt
 from ___GroupBox___ import GroupBox
 from ___SettingWidget___ import setting_widget
 from ___TransParentWidget___ import trans_parent_widget
+import sys
 import keyboard
 import threading
 import time
 import ___Keys___
 import pynput
+import ctypes
 
 class HotKeyInputThread(threading.Thread):
     def __init__(self):
@@ -237,7 +237,7 @@ class ToggleThread(threading.Thread):
 
         while self.state:
             time.sleep(self.delay)
-    def OnPress(self,event):
+    def OnPress(self, event):
         if event.name == ___Keys___.toggle_key and self.read_thread.is_alive() == True:
             self.read_thread.stop()
             self.read_thread.join()
@@ -256,7 +256,6 @@ class ReadGroupThread(threading.Thread):
         super().__init__(daemon=True)
         self.state = True
         self.delay = 0.01
-        self.keyBoard = pynput.keyboard.Controller()
     def run(self):
         while self.state:
             groups = GroupBox.group_list
@@ -319,8 +318,29 @@ class ReadGroupThread(threading.Thread):
 
         try:
             for key in key_list:
-                if keyboard.is_pressed(key):
-                    correct_count += 1
+                isNumpad = False
+                for vkCode in mapped_vk_numpad_codes:
+                    if ctypes.windll.user32.GetAsyncKeyState(vkCode) & 0x8000:
+                        # print(f"key name : {key}        isNumpad : {True}        vk code : {hex(vkCode)}")
+                        # print("==================================================================================")
+                        correct_count += 1
+                        isNumpad = True
+                        break
+                if isNumpad:
+                    continue
+
+                scList = keyboard.key_to_scan_codes(key)
+                # print(f"key name : {key}                scan code list : {scList}")
+                try:
+                    for scanCode in scList:
+                        vkCode = ctypes.windll.user32.MapVirtualKeyA(scanCode, 1)
+                        if ctypes.windll.user32.GetAsyncKeyState(vkCode) & 0x8000:
+                            correct_count += 1
+                            # print(f"key name : {key}      scanCode : {scanCode}        vk code : {hex(vkCode)}")
+                            # print("==============================================================================")
+                            break
+                except:
+                    pass
             if correct_count == len(key_list) and correct_count != 0 and ___Keys___.toggle_key not in key_list:
                 return True
             else:
@@ -342,10 +362,6 @@ class ReadGroupThread(threading.Thread):
             return True
         except:
             return False
-    def OnPress(self,event):
-        pass
-    def OnRelease(self,event):
-        pass
 
 class ToggleKeyLineThread(threading.Thread):
     def __init__(self):
