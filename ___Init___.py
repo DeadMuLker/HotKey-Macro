@@ -9,3 +9,4 @@ from ___MainScrollArea___ import *
 
 main_widget.show()
 app.exec()
+

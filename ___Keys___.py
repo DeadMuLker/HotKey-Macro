@@ -21,16 +21,16 @@ only_number_keys = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
 
 toggle_key = "f12"
 
-mapped_vk_numpad_codes = (
-    0x60, # numpad 0
-    0x61, # numpad 1
-    0x62, # numpad 2
-    0x63, # numpad 3
-    0x64, # numpad 4
-    0x65, # numpad 5
-    0x66, # numpad 6
-    0x67, # numpad 7
-    0x68, # numpad 8
-    0x69, # numpad 9
-    0x6E, # decimal
-)
+mapped_numpad_vk_codes = {
+    0x60: "0",
+    0x61: "1",
+    0x62: "2",
+    0x63: "3",
+    0x64: "4",
+    0x65: "5",
+    0x66: "6",
+    0x67: "7",
+    0x68: "8",
+    0x69: "9",
+    0x6E: "decimal",
+}

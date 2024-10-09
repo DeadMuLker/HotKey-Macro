@@ -317,18 +317,11 @@ class ReadGroupThread(threading.Thread):
         correct_count = 0
 
         try:
-            for key in key_list:
-                isNumpad = False
-                for vkCode in mapped_vk_numpad_codes:
-                    if ctypes.windll.user32.GetAsyncKeyState(vkCode) & 0x8000:
-                        # print(f"key name : {key}        isNumpad : {True}        vk code : {hex(vkCode)}")
-                        # print("==================================================================================")
-                        correct_count += 1
-                        isNumpad = True
-                        break
-                if isNumpad:
-                    continue
+            for key, value in mapped_numpad_vk_codes.items():
+                if ctypes.windll.user32.GetAsyncKeyState(key) & 0x8000 and value in key_list:
+                    correct_count += 1
 
+            for key in key_list:
                 scList = keyboard.key_to_scan_codes(key)
                 # print(f"key name : {key}                scan code list : {scList}")
                 try:
@@ -336,11 +329,10 @@ class ReadGroupThread(threading.Thread):
                         vkCode = ctypes.windll.user32.MapVirtualKeyA(scanCode, 1)
                         if ctypes.windll.user32.GetAsyncKeyState(vkCode) & 0x8000:
                             correct_count += 1
-                            # print(f"key name : {key}      scanCode : {scanCode}        vk code : {hex(vkCode)}")
-                            # print("==============================================================================")
                             break
                 except:
-                    pass
+                    return False
+            print(correct_count)
             if correct_count == len(key_list) and correct_count != 0 and ___Keys___.toggle_key not in key_list:
                 return True
             else:
