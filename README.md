@@ -23,7 +23,8 @@ like said before, It will be not executed. (I inserted this function to prevent 
 # Caution
 If you set the interval delay too long, even though you pressed the macro status to stop, the macro
 will not stop immediately. Because the macro stop check statements are placed after the interval delay.
-so, make the delay short. (recommend 0.01s)
+so, **make the delay short (recommend 0.01s). And please make sure that the hot key list and key list not to 
+duplicate.**
 
 # Save and Load
 This macro support save and load options, and the file extension is `.mco`.
